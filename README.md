@@ -41,7 +41,11 @@ Redirecting to /bin/systemctl restart crond.service
 ```
 
 ## 開始使用
+
 現在已經安裝好可以用基本的指令來操作geth
+
+### 開啟geth
+
 ```
 [root@124-219-96-44 ethdir]# geth attach http://127.0.0.1:8545
 Welcome to the Geth JavaScript console!
@@ -52,3 +56,17 @@ at block: 0 (Thu Jan 01 1970 08:00:00 GMT+0800 (CST))
 
 >
 ```
+
+### 建立新的帳戶
+建立一個新帳戶密碼為password，下方0x開頭的為ERC-20的錢包地址
+```
+> personal.newAccount('password')
+"0x8cc1be554c3efeceb2f4909488705a4415b7f788"
+```
+
+### 查看錢包餘額
+```
+> eth.getBalance('0x8cc1be554c3efeceb2f4909488705a4415b7f788')
+0
+```
+
