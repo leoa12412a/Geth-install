@@ -70,3 +70,28 @@ at block: 0 (Thu Jan 01 1970 08:00:00 GMT+0800 (CST))
 0
 ```
 
+## 使用Docker安裝
+
+### 下載Docker file
+```
+$ docker pull ethereum/client-go
+```
+
+### 建立geth的Container
+```
+$ docker run -d --name eth-ropsten-node -v $HOME/geth/ropsten:/root \
+  -p 8545:8545 -p 30303:30303 \
+  ethereum/client-go \
+  --testnet \
+  --syncmode "fast" \
+  --cache=1024
+```
+稍微說明一下這段指令：
+
+- docker run：執行一個新的 Container
+- -d：在背景執行 Container 並且列印出 Container 的 ID
+- --name eth-ropsten-node：Container 的名稱
+- -v：綁定 Volume 的位置，$HOME/get/ropsten 是本機端的目錄，對映到 Container 的 root 目錄
+- -p 8545:8545 -p 30303:30303：要 expose 的 port
+- ethereum/client-go：指定映像檔名稱，使用我們剛剛拉取回來的映像檔
+- --testnet、--syncmode "fast"、--cache=1024：當容器起來後，會執行 ENTRYPOINT 的指令，可以參考上面的 Dockerfile
