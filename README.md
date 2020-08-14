@@ -95,3 +95,24 @@ $ docker run -d --name eth-ropsten-node -v $HOME/geth/ropsten:/root \
 - -p 8545:8545 -p 30303:30303：要 expose 的 port
 - ethereum/client-go：指定映像檔名稱，使用我們剛剛拉取回來的映像檔
 - --testnet、--syncmode "fast"、--cache=1024：當容器起來後，會執行 ENTRYPOINT 的指令，可以參考上面的 Dockerfile
+
+### 檢查安裝是否成功
+
+```
+docker exec {CONTAINER ID} geth version
+```
+結果=>
+```
+# docker exec 16ed6eb9 geth version
+Geth
+Version: 1.9.20-unstable
+Git Commit: 04926db204232b7103b8eb14bf3f8e9de129ad44
+Git Commit Date: 20200811
+Architecture: amd64
+Protocol Versions: [65 64 63]
+Go Version: go1.14.7
+Operating System: linux
+GOPATH=
+GOROOT=go
+
+```
